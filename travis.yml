@@ -3,8 +3,7 @@ jdk:
   - openjdk11
 sudo: required
 script:
-  - ./mvnw test
-  - ./mvnw jacocoTestReport
+  - ./mvnw test -P jacocoTestReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
