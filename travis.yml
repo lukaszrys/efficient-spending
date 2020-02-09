@@ -3,8 +3,8 @@ jdk:
   - openjdk11
 sudo: required
 script:
-  - ./gradlew check
-  - ./gradlew jacocoTestReport
+  - ./mvnw test
+  - ./mvnw jacocoTestReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
