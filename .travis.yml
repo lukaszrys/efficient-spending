@@ -11,7 +11,7 @@ before_install:
 
 script:
 #  - if [ "$TRAVIS_BRANCH" = "master" ]; then ./mvnw deploy -P deploy-docker; fi
-  - ./mvnw deploy -P deploy-docker
+  - ./mvnw clean deploy -P deploy-docker
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
