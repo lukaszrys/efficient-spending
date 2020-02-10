@@ -2,9 +2,15 @@ language: java
 jdk:
   - openjdk11
 sudo: required
+services:
+  - docker
+
+before_install:
+  - docker pull openjdk:11-jre-slim-sid
+
 script:
   - ./mvnw clean install
+  - ./mvnw deploy
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - ./mvnw deploy
