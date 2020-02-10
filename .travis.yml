@@ -10,7 +10,6 @@ before_install:
   - docker pull openjdk:11-jre-slim-sid
 
 script:
-  - if [ "$TRAVIS_BRANCH" != "master" ]; then ./mvnw clean install; fi
   - if [ "$TRAVIS_BRANCH" = "master" ]; then ./mvnw deploy; fi
 
 after_success:
