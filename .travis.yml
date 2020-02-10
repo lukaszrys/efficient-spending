@@ -3,7 +3,7 @@ jdk:
   - openjdk11
 sudo: required
 script:
-  - ./mvnw test
+  - ./mvnw clean install
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
