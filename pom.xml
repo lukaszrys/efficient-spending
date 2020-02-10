@@ -11,5 +11,8 @@
         <module>account-service</module>
     </modules>
     <packaging>pom</packaging>
-    
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
 </project>
