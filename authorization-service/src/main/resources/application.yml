@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27031
+      database: authorization-service-db
+      username: authorization
+      password: authorization
+server:
+  servlet:
+    context-path: /auth
+  port: 8030

@@ -1,12 +1,23 @@
-
 spring:
   data:
     mongodb:
       host: localhost
-      port: 27017
+      port: 27030
       database: account-service-db
       username: account
       password: account
+
+security:
+  oauth2:
+    client:
+      clientId: account-service
+      clientSecret: account-service
+      accessTokenUri: http://localhost:8030/auth/oauth/token
+      userAuthorizationUri: http://localhost:8030/auth/oauth/authorize
+      scope: service
+    resource:
+      userInfoUri: http://localhost:8030/auth/user/me
 server:
   servlet:
     context-path: /api
+  port: 8070

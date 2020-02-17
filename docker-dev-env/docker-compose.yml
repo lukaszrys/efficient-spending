@@ -5,13 +5,26 @@ services:
     image: mongo
     restart: always
     ports:
-      - "27017:27017"
+      - "27030:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
       MONGO_INITDB_DATABASE: account-service-db
     volumes:
-      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongo-account-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - efficient-network
+  mongo-authorization:
+    image: mongo
+    restart: always
+    ports:
+      - "27031:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: authorization-service-db
+    volumes:
+      - ./mongo-authorization-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - efficient-network
 

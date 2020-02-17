@@ -10,6 +10,7 @@
     <modules>
         <module>account-service</module>
         <module>cqrs-lib</module>
+        <module>authorization-service</module>
     </modules>
     <packaging>pom</packaging>
 
