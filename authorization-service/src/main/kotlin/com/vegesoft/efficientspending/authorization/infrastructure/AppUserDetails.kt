@@ -3,7 +3,7 @@ package com.vegesoft.efficientspending.authorization.infrastructure
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class AppUserDetails(
+data class AppUserDetails(
         private val username: String,
         private val password: String
 ) : UserDetails {

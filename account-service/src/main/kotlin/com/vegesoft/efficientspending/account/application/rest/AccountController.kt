@@ -27,9 +27,7 @@ class AccountController(
     }
 
     @GetMapping("/me")
-    fun getAccountInformation(principal: Principal): IdResponse {
-        val id = UUID.randomUUID()
-
-        return IdResponse(id)
+    fun getAccountInformation(principal: Principal): Principal {
+        return principal
     }
 }

@@ -1,13 +1,17 @@
 package com.vegesoft.efficientspending.authorization.infrastructure
 
+import com.vegesoft.efficientspending.authorization.domain.AppUserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class RepositoryUserDetailsService : UserDetailsService {
+class RepositoryUserDetailsService(
+        val appUserRepository: AppUserRepository
+) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
-        return AppUserDetails("username", BCryptPasswordEncoder().encode("password"))
+        return appUserRepository.findByUsername(username)
+                .map { appUser -> AppUserDetails(appUser.username, appUser.password) }
+                .orElseThrow()
     }
 }

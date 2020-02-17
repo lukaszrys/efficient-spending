@@ -11,7 +11,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>authentication-service</artifactId>
+    <artifactId>authorization-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
@@ -75,6 +75,11 @@
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vegesoft.efficientspending</groupId>
+            <artifactId>cqrs-lib</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
 

@@ -1,18 +1,4 @@
 spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          authorization-service:
-            client-id: account-service
-            client-secret: account-service
-        provider:
-          authorization-service:
-            authorization-uri: http://localhost:8030/auth/oauth/authorize
-            token-uri: http://localhost:8030/auth/oauth/token
-            user-info-uri: http://localhost:8030/auth/user/me
-            scope: service
-            grant-type: client_credentials
   data:
     mongodb:
       host: localhost
@@ -20,6 +6,18 @@ spring:
       database: account-service-db
       username: account
       password: account
+
+security:
+  oauth2:
+    client:
+      clientId: account-service
+      clientSecret: account-service
+      accessTokenUri: http://localhost:8030/auth/oauth/token
+      userAuthorizationUri: http://localhost:8030/auth/oauth/authorize
+      scope: service
+    resource:
+      userInfoUri: http://localhost:8030/auth/user/me
 server:
   servlet:
     context-path: /api
+  port: 8070

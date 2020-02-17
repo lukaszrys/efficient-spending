@@ -10,12 +10,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler
 
 
 @Configuration
 @EnableWebSecurity
 @Order(1)
+@EnableResourceServer
 class WebSecurityConfig(
         val userDetailsService: RepositoryUserDetailsService
 ) : WebSecurityConfigurerAdapter() {
@@ -29,9 +31,6 @@ class WebSecurityConfig(
                 .and()
                 .exceptionHandling()
                 .accessDeniedHandler(OAuth2AccessDeniedHandler())
-//                .and()
-//                .oauth2Login()
-//                .permitAll()
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {

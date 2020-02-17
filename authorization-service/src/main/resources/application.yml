@@ -3,9 +3,9 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: account-service-db
-      username: account
-      password: account
+      database: authorization-service-db
+      username: authorization
+      password: authorization
 server:
   servlet:
     context-path: /auth
