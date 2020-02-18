@@ -1,8 +1,9 @@
 package com.vegesoft.efficientspending.authorization.application.handler
 
 import com.vegesoft.efficientspending.authorization.application.command.CreateAppUserCommand
+import com.vegesoft.efficientspending.authorization.application.command.CreateAppUserRequest
 import com.vegesoft.efficientspending.authorization.domain.AppUser
-import com.vegesoft.efficientspending.authorization.domain.AppUserRepository
+import com.vegesoft.efficientspending.authorization.domain.repository.AppUserRepository
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -27,10 +28,11 @@ internal class CreateAppUserHandlerTest {
     @Test
     @DisplayName("Should create app user and save in repository")
     fun shouldCreateAppUser() {
-        val command = CreateAppUserCommand(UUID.randomUUID(), "email@email", "password")
+        val request = CreateAppUserRequest("firstName", "lastName", "email@email", "password")
+        val command = CreateAppUserCommand(UUID.randomUUID(), request)
         val encodedPassword = "encodedPassword"
-        val appUser = AppUser(command.id, command.username, encodedPassword)
-        every { passwordEncoder.encode(command.password) } returns encodedPassword
+        val appUser = AppUser(command.id, request.email, encodedPassword)
+        every { passwordEncoder.encode(request.password) } returns encodedPassword
         every { appUserRepository.save(appUser) } returns appUser
 
         tested.createAccount(command)

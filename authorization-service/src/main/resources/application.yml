@@ -1,3 +1,6 @@
+amqp:
+  queues:
+    accountService: account
 spring:
   data:
     mongodb:
@@ -6,6 +9,11 @@ spring:
       database: authorization-service-db
       username: authorization
       password: authorization
+  rabbitmq:
+    host: localhost
+    port: 5682
+    username: guest
+    password: guest
 server:
   servlet:
     context-path: /auth

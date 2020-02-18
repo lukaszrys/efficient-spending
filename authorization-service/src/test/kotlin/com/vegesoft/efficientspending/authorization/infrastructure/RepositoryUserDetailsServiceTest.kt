@@ -1,7 +1,7 @@
 package com.vegesoft.efficientspending.authorization.infrastructure
 
 import com.vegesoft.efficientspending.authorization.domain.AppUser
-import com.vegesoft.efficientspending.authorization.domain.AppUserRepository
+import com.vegesoft.efficientspending.authorization.domain.repository.AppUserRepository
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK

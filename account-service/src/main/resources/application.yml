@@ -1,5 +1,3 @@
-queue:
-
 spring:
   data:
     mongodb:
