@@ -10,5 +10,7 @@ data class CreateAccountRequest (
         val lastName: String,
         @Email
         @NotEmpty
-        val email: String
+        val email: String,
+        @NotEmpty
+        val password: String
 )

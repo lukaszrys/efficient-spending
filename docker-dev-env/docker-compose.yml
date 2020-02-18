@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - '5682:5672'
+      - '15672:15672'
+    networks:
+      - efficient-network
   mongo-account:
     image: mongo
     restart: always

@@ -23,13 +23,13 @@ class OAuth2AuthorizationConfig(
     override fun configure(clients: ClientDetailsServiceConfigurer) {
         clients.inMemory()
                 .withClient("web-app")
-                .authorizedGrantTypes("refresh_token", "password")
                 .secret(passwordEncoder.encode("web-app-secret"))
+                .authorizedGrantTypes("refresh_token", "password")
                 .scopes("ui")
                 .and()
                 .withClient("account-service")
-                .secret(passwordEncoder.encode("account-service"))
-                .authorizedGrantTypes("client_credentials", "refresh_token")
+                .secret(passwordEncoder.encode("account-service-secret"))
+                .authorizedGrantTypes("authorization_code")
                 .scopes("service")
     }
 

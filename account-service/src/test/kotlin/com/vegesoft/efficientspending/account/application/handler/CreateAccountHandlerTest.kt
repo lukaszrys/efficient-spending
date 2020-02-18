@@ -25,7 +25,7 @@ internal class CreateAccountHandlerTest {
     @Test
     @DisplayName("Should handle command by creating and saving an account")
     fun shouldHandleCommand_andSaveAccount() {
-        val request = CreateAccountRequest("firstName", "lastName", "email@email.com")
+        val request = CreateAccountRequest("firstName", "lastName", "email@email.com", "password")
         val id = UUID.randomUUID()
         val command = CreateAccountCommand(id, request)
         val account = Account(id, request.firstName, request.lastName, request.email)

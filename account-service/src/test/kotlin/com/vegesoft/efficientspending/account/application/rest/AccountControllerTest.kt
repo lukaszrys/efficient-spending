@@ -28,7 +28,7 @@ internal class AccountControllerTest {
     @Test
     @DisplayName("Should dispatch create account command and return id")
     fun shouldDispatchCreateAccountCommand() {
-        val request = CreateAccountRequest("firstName", "lastName", "email@email.com")
+        val request = CreateAccountRequest("firstName", "lastName", "email@email.com", "password")
         val command = CreateAccountCommand(UUID.randomUUID(), request)
         every { accountCommandMapper.createCommand(any(), request) } returns command
 

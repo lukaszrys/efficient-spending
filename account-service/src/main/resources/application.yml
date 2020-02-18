@@ -1,3 +1,5 @@
+queue:
+
 spring:
   data:
     mongodb:
@@ -6,17 +8,23 @@ spring:
       database: account-service-db
       username: account
       password: account
+  rabbitmq:
+    host: localhost
+    port: 5682
+    username: guest
+    password: guest
 
 security:
   oauth2:
     client:
       clientId: account-service
-      clientSecret: account-service
+      clientSecret: account-service-secret
       accessTokenUri: http://localhost:8030/auth/oauth/token
       userAuthorizationUri: http://localhost:8030/auth/oauth/authorize
       scope: service
+      grant-type: authorization_code
     resource:
-      userInfoUri: http://localhost:8030/auth/user/me
+      userInfoUri: http://localhost:8030/auth/users/me
 server:
   servlet:
     context-path: /api

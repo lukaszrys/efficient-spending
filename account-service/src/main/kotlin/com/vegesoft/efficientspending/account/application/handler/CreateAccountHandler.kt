@@ -4,11 +4,13 @@ import com.vegesoft.efficientspending.account.application.command.CreateAccountC
 import com.vegesoft.efficientspending.account.domain.Account
 import com.vegesoft.efficientspending.account.domain.AccountRepository
 import com.vegesoft.efficientspending.cqrs.CommandHandler
+import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Service
 
 @Service
 class CreateAccountHandler(
-        private val accountRepository: AccountRepository
+        private val accountRepository: AccountRepository,
+        private val rabbitTemplate: RabbitTemplate
 ) {
 
     @CommandHandler
@@ -21,6 +23,7 @@ class CreateAccountHandler(
                 email = data.email
         )
 
+        rabbitTemplate.convertAndSend("myQueue", "Test message")
         accountRepository.save(account)
     }
 }
