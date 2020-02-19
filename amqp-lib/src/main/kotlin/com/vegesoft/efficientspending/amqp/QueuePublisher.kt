@@ -15,7 +15,7 @@ class QueuePublisher(
     }
 
     fun publish(serviceName: String, message: Any) {
-        val value = queueProperties.queues["accountService"]
+        val value = queueProperties.queues[serviceName]
         value?.let {
             val accountServiceExchangeName = topicExchangeProvider.provideTopicExchangeName(value)
 

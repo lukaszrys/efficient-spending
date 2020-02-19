@@ -18,7 +18,7 @@ class QueueConfiguration(
 ) {
 
     @Bean
-    fun topicBindings(): Declarables {
+    fun declarables(): Declarables {
         val list = queueProperties.queues.map { (_, queueName) ->
             val topicExchange = TopicExchange(topicExchangeProvider.provideTopicExchangeName(queueName))
             val queue = Queue(queueNameProvider.provideQueueName(queueName, QueueType.MAIN), false)
