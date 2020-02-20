@@ -1,5 +1,6 @@
 package com.vegesoft.efficientspending.amqp
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.vegesoft.efficientspending.amqp.listener.QueueMessage
 import com.vegesoft.efficientspending.amqp.publish.QueuePublisher
 import io.mockk.every
@@ -22,6 +23,8 @@ internal class QueuePublisherTest {
     private lateinit var queueProperties: QueueProperties
     @MockK
     private lateinit var topicExchangeProvider: TopicExchangeProvider
+    @MockK
+    private lateinit var objectMapper: ObjectMapper
     @InjectMockKs
     private lateinit var tested: QueuePublisher
 
@@ -31,13 +34,15 @@ internal class QueuePublisherTest {
         val key = "key"
         val value = "value"
         val message = mockk<QueueMessage>()
+        val jsonMessage = "jsonMessage"
         val exchangeName = "exchangeName"
 
         every { queueProperties.queues } returns mapOf(key to value)
         every { topicExchangeProvider.provideTopicExchangeName(value) } returns exchangeName
+        every { objectMapper.writeValueAsString(message) } returns jsonMessage
 
         tested.publish(key, message)
 
-        verify { rabbitTemplate.convertAndSend(exchangeName, QueueType.MAIN.name, message) }
+        verify { rabbitTemplate.convertAndSend(exchangeName, QueueType.MAIN.name, jsonMessage) }
     }
 }
