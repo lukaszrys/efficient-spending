@@ -1,10 +1,13 @@
 package com.vegesoft.efficientspending.amqp
 
+import com.vegesoft.efficientspending.amqp.listener.QueueMessage
+import com.vegesoft.efficientspending.amqp.publish.QueuePublisher
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -27,7 +30,7 @@ internal class QueuePublisherTest {
     fun shouldPublishMessage() {
         val key = "key"
         val value = "value"
-        val message = "message"
+        val message = mockk<QueueMessage>()
         val exchangeName = "exchangeName"
 
         every { queueProperties.queues } returns mapOf(key to value)

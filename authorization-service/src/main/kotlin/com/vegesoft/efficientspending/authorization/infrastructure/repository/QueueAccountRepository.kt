@@ -1,6 +1,6 @@
 package com.vegesoft.efficientspending.authorization.infrastructure.repository
 
-import com.vegesoft.efficientspending.amqp.QueuePublisher
+import com.vegesoft.efficientspending.amqp.publish.QueuePublisher
 import com.vegesoft.efficientspending.authorization.domain.Account
 import com.vegesoft.efficientspending.authorization.domain.repository.AccountRepository
 import org.springframework.stereotype.Component

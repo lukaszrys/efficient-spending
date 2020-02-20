@@ -1,0 +1,3 @@
+package com.vegesoft.efficientspending.amqp.listener
+
+internal class QueueListenerConfigurationTest

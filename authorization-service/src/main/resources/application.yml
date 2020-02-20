@@ -1,6 +1,6 @@
 amqp:
   queues:
-    accountService: account
+    accountService: create_account
 spring:
   data:
     mongodb:
