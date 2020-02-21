@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.vegesoft.efficientspending.amqp.QueueProperties
 import com.vegesoft.efficientspending.amqp.QueueType
 import com.vegesoft.efficientspending.amqp.TopicExchangeProvider
+import com.vegesoft.efficientspending.amqp.listener.AbstractQueueHandler
+import org.slf4j.LoggerFactory
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Component
 
@@ -14,7 +16,6 @@ class QueuePublisher(
         private val topicExchangeProvider: TopicExchangeProvider,
         private val objectMapper: ObjectMapper
 ) {
-
     fun publish(serviceName: String, message: Any) {
         val value = queueProperties.queues[serviceName]
         value?.let {

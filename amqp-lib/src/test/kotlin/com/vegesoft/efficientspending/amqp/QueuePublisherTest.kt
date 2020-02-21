@@ -45,4 +45,13 @@ internal class QueuePublisherTest {
 
         verify { rabbitTemplate.convertAndSend(exchangeName, QueueType.MAIN.name, jsonMessage) }
     }
+
+    @Test
+    @DisplayName("Should do nothing when not published")
+    fun shouldDoNothingWhenNotPublished() {
+        val message = mockk<QueueMessage>()
+        every { queueProperties.queues } returns mapOf("key" to "value")
+
+        tested.publish("notExistingKey", message)
+    }
 }

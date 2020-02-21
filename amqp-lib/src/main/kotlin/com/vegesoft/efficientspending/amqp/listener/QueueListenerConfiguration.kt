@@ -40,8 +40,8 @@ class QueueListenerConfiguration(
 
     private fun getHandlerName(handler: AbstractQueueHandler<*>) = handler::class::simpleName
 
-    fun buildMessageListenerContainer(connectionFactory: ConnectionFactory,
-                                      listenerAdapter: MessageListenerAdapter, queueName: String): SimpleMessageListenerContainer {
+    private fun buildMessageListenerContainer(connectionFactory: ConnectionFactory,
+                                              listenerAdapter: MessageListenerAdapter, queueName: String): SimpleMessageListenerContainer {
         val container = SimpleMessageListenerContainer()
         container.connectionFactory = connectionFactory
         container.setQueueNames(queueName)
@@ -49,7 +49,7 @@ class QueueListenerConfiguration(
         return container
     }
 
-    fun listenerAdapter(receiver: Any): MessageListenerAdapter {
+    private fun listenerAdapter(receiver: Any): MessageListenerAdapter {
         return MessageListenerAdapter(receiver, messageConverter)
     }
 }

@@ -1,6 +1,5 @@
 package com.vegesoft.efficientspending.amqp
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.amqp.core.BindingBuilder.bind
 import org.springframework.amqp.core.Declarables
 import org.springframework.amqp.core.Queue
@@ -23,7 +22,7 @@ class QueueConfiguration(
 ) {
 
     @Bean
-    fun jsonMessageConverter(objectMapper: ObjectMapper): MessageConverter {
+    fun jsonMessageConverter(): MessageConverter {
         return Jackson2JsonMessageConverter()
     }
 
