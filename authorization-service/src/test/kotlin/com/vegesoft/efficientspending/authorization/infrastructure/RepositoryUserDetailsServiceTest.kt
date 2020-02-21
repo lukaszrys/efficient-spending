@@ -29,7 +29,13 @@ internal class RepositoryUserDetailsServiceTest {
 
         val result = tested.loadUserByUsername(appUser.username)
 
-        assertEquals(result, AppUserDetails(appUser.username, appUser.password))
+        assertEquals(appUser.password, result.password)
+        assertEquals(appUser.username, result.username)
+        assertEquals(true, result.isEnabled)
+        assertEquals(true, result.isCredentialsNonExpired)
+        assertEquals(true, result.isAccountNonExpired)
+        assertEquals(true, result.isAccountNonLocked)
+        assertEquals(mutableListOf(), result.authorities)
     }
 
     @Test
