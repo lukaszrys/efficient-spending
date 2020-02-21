@@ -1,7 +1,6 @@
 package com.vegesoft.efficientspending.account.application.handler
 
 import com.vegesoft.efficientspending.account.application.command.CreateAccountCommand
-import com.vegesoft.efficientspending.account.application.command.CreateAccountRequest
 import com.vegesoft.efficientspending.account.domain.Account
 import com.vegesoft.efficientspending.account.domain.AccountRepository
 import io.mockk.every
@@ -25,10 +24,9 @@ internal class CreateAccountHandlerTest {
     @Test
     @DisplayName("Should handle command by creating and saving an account")
     fun shouldHandleCommand_andSaveAccount() {
-        val request = CreateAccountRequest("firstName", "lastName", "email@email.com")
         val id = UUID.randomUUID()
-        val command = CreateAccountCommand(id, request)
-        val account = Account(id, request.firstName, request.lastName, request.email)
+        val command = CreateAccountCommand(id, "firstName", "lastName", "email@email.com")
+        val account = Account(id, command.firstName, command.lastName, command.email)
         every { accountRepository.save(eq(account)) } returns account
 
         tested.createAccount(command)

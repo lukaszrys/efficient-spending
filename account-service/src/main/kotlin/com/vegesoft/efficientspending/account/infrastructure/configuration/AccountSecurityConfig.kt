@@ -10,11 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.oauth2.client.OAuth2ClientContext
 import org.springframework.security.oauth2.client.OAuth2RestTemplate
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer
 
 @Configuration
 @EnableOAuth2Sso
-@EnableResourceServer
 class AccountSecurityConfig : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
@@ -24,6 +22,8 @@ class AccountSecurityConfig : WebSecurityConfigurerAdapter() {
                 .permitAll()
                 .anyRequest()
                 .authenticated()
+                .and()
+                .csrf().disable();
     }
 
     @Bean

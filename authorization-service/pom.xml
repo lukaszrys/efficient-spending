@@ -22,6 +22,7 @@
     </properties>
 
     <dependencies>
+        <!-- SPRING -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -39,6 +40,12 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.2.4.RELEASE</version>
+        </dependency>
+        <!-- KOTLIN -->
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
         </dependency>
@@ -47,20 +54,22 @@
             <artifactId>jackson-module-kotlin</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <!-- INTERNAL -->
+        <dependency>
             <groupId>com.vegesoft.efficientspending</groupId>
             <artifactId>cqrs-lib</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
+            <groupId>com.vegesoft.efficientspending</groupId>
+            <artifactId>amqp-lib</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-            <version>2.2.4.RELEASE</version>
-        </dependency>
+        <!-- JAVA > 8 -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -76,13 +85,7 @@
             <artifactId>jaxb-runtime</artifactId>
             <version>2.3.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.vegesoft.efficientspending</groupId>
-            <artifactId>cqrs-lib</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-
+        <!-- TEST -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

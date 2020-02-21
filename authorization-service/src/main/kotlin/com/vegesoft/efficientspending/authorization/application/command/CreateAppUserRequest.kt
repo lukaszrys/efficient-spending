@@ -1,14 +1,16 @@
-package com.vegesoft.efficientspending.account.application.command
+package com.vegesoft.efficientspending.authorization.application.command
 
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
 
-data class CreateAccountRequest (
+data class CreateAppUserRequest (
         @NotEmpty
         val firstName: String,
         @NotEmpty
         val lastName: String,
         @Email
         @NotEmpty
-        val email: String
+        val email: String,
+        @NotEmpty
+        val password: String
 )
