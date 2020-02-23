@@ -1,4 +1,9 @@
 package com.vegesoft.efficientspending.account.application.query
 
-class CurrentAccountView {
-}
+import java.math.BigDecimal
+
+data class CurrentAccountView(
+        val firstName: String,
+        val lastName: String,
+        val email: String
+)

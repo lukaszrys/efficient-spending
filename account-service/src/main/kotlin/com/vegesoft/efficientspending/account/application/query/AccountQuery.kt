@@ -1,4 +1,7 @@
 package com.vegesoft.efficientspending.account.application.query
 
-interface AccountQuery {
+import java.util.*
+
+interface cd ..AccountQuery {
+    fun findCurrentAccount(email: String): Optional<CurrentAccountView>
 }
