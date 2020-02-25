@@ -16,6 +16,10 @@ class CreateAccountHandler(
 
     @CommandHandler
     fun createAccount(createAccountCommand: CreateAccountCommand) {
+        if (accountRepository.findAccountByEmail(createAccountCommand.data.email).isPresent) {
+            throw RuntimeException("Account with given email already exists")
+        }
+
         accountRepository.save(buildAccount(createAccountCommand))
         authorizationUserRepository.save(buildAuthorizationUser(createAccountCommand))
     }

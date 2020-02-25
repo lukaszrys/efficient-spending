@@ -11,9 +11,11 @@ import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
+import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import java.util.*
 
@@ -36,10 +38,23 @@ internal class CreateAccountHandlerTest {
         val account = Account(id, request.firstName, request.lastName, request.email)
         val authorizationUser = AuthorizationUser(id, request.email, request.password)
         every { accountRepository.save(eq(account)) } returns account
+        every { accountRepository.findAccountByEmail(request.email) } returns Optional.empty()
 
         tested.createAccount(command)
 
         verify { accountRepository.save(account) }
         verify { authorizationUserRepository.save(authorizationUser) }
+    }
+
+    @Test
+    @DisplayName("Should throw exception when email already exists")
+    fun shouldValidateEmail() {
+        val id = UUID.randomUUID()
+        val request = CreateAccountRequest("firstName", "lastName", "email@email.com", "password")
+        val command = CreateAccountCommand(id, request)
+
+        every { accountRepository.findAccountByEmail(request.email) } returns Optional.of(mockk())
+
+        assertThrows<RuntimeException> { tested.createAccount(command) }
     }
 }
