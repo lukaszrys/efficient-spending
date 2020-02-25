@@ -5,7 +5,7 @@ import java.util.*
 
 const val ACCOUNT_COLLECTION_NAME = "account"
 
-@Document(collation = ACCOUNT_COLLECTION_NAME)
+@Document(collection = ACCOUNT_COLLECTION_NAME)
 data class Account(
         val id: UUID,
         val firstName: String,
