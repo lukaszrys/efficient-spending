@@ -4,7 +4,6 @@ import com.vegesoft.efficientspending.authorization.infrastructure.RepositoryUse
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.annotation.Order
-import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -24,7 +23,6 @@ class AuthorizationSecurityConfig(
                 .antMatchers("/oauth/authorize")
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .antMatchers("/error").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
