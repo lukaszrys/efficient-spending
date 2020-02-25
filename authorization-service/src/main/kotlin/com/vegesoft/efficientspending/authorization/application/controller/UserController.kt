@@ -23,7 +23,6 @@ class UserController(
 ) {
 
     @GetMapping("/me")
-    @PreAuthorize("#oauth2.hasScope('server')")
     fun getCurrentlyLoggedUser(principal: Principal): Principal {
         return principal
     }

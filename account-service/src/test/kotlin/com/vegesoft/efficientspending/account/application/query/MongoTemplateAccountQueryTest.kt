@@ -1,10 +1,10 @@
 package com.vegesoft.efficientspending.account.application.query
 
+import com.vegesoft.efficientspending.account.domain.ACCOUNT_COLLECTION_NAME
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
-import io.mockk.mockk
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -29,9 +29,9 @@ internal class MongoTemplateAccountQueryTest {
         val lastName = "lastName"
         val query = Query(Criteria.where("email").`is`(email))
         val view = CurrentAccountView("firstName", "lastName", email)
-        every { mongoTemplate.findOne(query, CurrentAccountView::class.java) } returns view
+        every { mongoTemplate.findOne(query, CurrentAccountView::class.java, ACCOUNT_COLLECTION_NAME) } returns view
 
-        val  result = tested.findCurrentAccount(email).get()
+        val result = tested.findCurrentAccount(email).get()
 
         assertEquals(email, result.email)
         assertEquals(firstName, result.firstName)

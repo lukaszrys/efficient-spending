@@ -1,12 +1,14 @@
 package com.vegesoft.efficientspending.authorization.infrastructure.configuration
 
 import com.vegesoft.efficientspending.authorization.infrastructure.RepositoryUserDetailsService
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer
 import org.springframework.security.oauth2.provider.token.TokenStore
@@ -26,13 +28,16 @@ class OAuth2AuthorizationConfig(
                 .secret(passwordEncoder.encode("web-app-secret"))
                 .authorizedGrantTypes("refresh_token", "password")
                 .scopes("ui")
+                .autoApprove(true)
                 .and()
                 .withClient("account-service")
-                .secret(passwordEncoder.encode("account-service-secret"))
+                .secret(passwordEncoder.encode("account-service"))
                 .authorizedGrantTypes("authorization_code")
                 .scopes("service")
+                .autoApprove(true)
     }
 
+    @Bean
     fun tokenStore(): TokenStore {
         return InMemoryTokenStore()
     }

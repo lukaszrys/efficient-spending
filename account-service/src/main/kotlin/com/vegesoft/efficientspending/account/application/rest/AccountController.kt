@@ -15,6 +15,7 @@ class AccountController(
 
     @GetMapping("/me")
     fun getAccountInformation(principal: Principal): CurrentAccountView {
-        return accountQuery.findCurrentAccount(principal.name).orElseThrow()
+        return accountQuery.findCurrentAccount(principal.name)
+                .orElseThrow()
     }
 }
