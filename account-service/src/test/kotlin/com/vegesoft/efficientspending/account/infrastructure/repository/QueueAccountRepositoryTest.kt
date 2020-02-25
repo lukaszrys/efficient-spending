@@ -1,7 +1,7 @@
-package com.vegesoft.efficientspending.authorization.infrastructure.repository
+package com.vegesoft.efficientspending.account.infrastructure.repository
 
+import com.vegesoft.efficientspending.account.domain.AuthorizationUser
 import com.vegesoft.efficientspending.amqp.publish.QueuePublisher
-import com.vegesoft.efficientspending.authorization.domain.Account
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
@@ -19,10 +19,10 @@ internal class QueueAccountRepositoryTest {
 
     @Test
     fun shouldPublishTheMessage() {
-        val account = mockk<Account>()
+        val user = mockk<AuthorizationUser>()
 
-        tested.save(account)
+        tested.save(user)
 
-        verify { queuePublisher.publish("accountService", account) }
+        verify { queuePublisher.publish("accountService", user) }
     }
 }
