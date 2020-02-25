@@ -35,6 +35,12 @@ class OAuth2AuthorizationConfig(
                 .authorizedGrantTypes("authorization_code")
                 .scopes("service")
                 .autoApprove(true)
+                .and()
+                .withClient("balance-service")
+                .secret(passwordEncoder.encode("balance-service"))
+                .authorizedGrantTypes("authorization_code")
+                .scopes("service")
+                .autoApprove(true)
     }
 
     @Bean

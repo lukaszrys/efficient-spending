@@ -15,7 +15,7 @@ class ResourceSecurityConfig : ResourceServerConfigurerAdapter() {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
-                .antMatchers("/error").permitAll()
+                .antMatchers("/actuator**").permitAll()
                 .antMatchers("/**").authenticated()
                 .and().csrf().disable()
     }
