@@ -19,15 +19,15 @@ class AuthorizationSecurityConfig(
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
-        http.requestMatchers()
+        http
+                .requestMatchers()
                 .antMatchers("/oauth/authorize")
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/users")
-                .permitAll()
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
+                .antMatchers("/error").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .csrf().disable();
+                .and().csrf().disable()
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
