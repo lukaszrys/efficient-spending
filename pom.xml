@@ -12,6 +12,7 @@
         <module>cqrs-lib</module>
         <module>authorization-service</module>
         <module>amqp-lib</module>
+      <module>balance-service</module>
     </modules>
     <packaging>pom</packaging>
 

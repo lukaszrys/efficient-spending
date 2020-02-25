@@ -1,7 +1,6 @@
-package com.vegesoft.efficientspending.account.infrastructure.configuration
+package com.vegesoft.efficientspending.balance.infrastructure.configuration
 
 import org.springframework.context.annotation.Configuration
-import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter
@@ -14,7 +13,6 @@ class ResourceSecurityConfig : ResourceServerConfigurerAdapter() {
         http
                 .authorizeRequests()
                 .antMatchers("/actuator**").permitAll()
-                .antMatchers(HttpMethod.POST, "/accounts").permitAll()
                 .antMatchers("/**").authenticated()
                 .and().csrf().disable()
     }

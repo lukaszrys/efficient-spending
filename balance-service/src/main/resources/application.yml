@@ -1,0 +1,17 @@
+security:
+  oauth2:
+    client:
+      clientId: balance-service
+      clientSecret: balance-service
+      accessTokenUri: http://localhost:8030/auth/oauth/token
+      userAuthorizationUri: http://localhost:8030/auth/oauth/authorize
+      scope: service
+      grant-type: authorization_code
+    resource:
+      userInfoUri: http://localhost:8030/auth/users/me
+      prefer-token-info: false
+
+server:
+  servlet:
+    context-path: /api
+  port: 8060
