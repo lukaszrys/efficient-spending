@@ -7,11 +7,14 @@ import com.vegesoft.efficientspending.authorization.application.command.CreateAp
 import com.vegesoft.efficientspending.cqrs.CommandBus
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
+@ExtendWith(MockKExtension::class)
 internal class CreateUserMessageHandlerTest {
     @RelaxedMockK
     private lateinit var objectMapper: ObjectMapper
