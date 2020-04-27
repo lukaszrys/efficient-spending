@@ -13,6 +13,7 @@
     <module>authorization-service</module>
     <module>amqp-lib</module>
     <module>balance-service</module>
+    <module>event-sourcing-lib</module>
   </modules>
   <packaging>pom</packaging>
 
